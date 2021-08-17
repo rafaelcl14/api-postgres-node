@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
-const jwt = require('jsonwebtoken');
-const SECRET = 'segredo'
+const jwt = require("jsonwebtoken");
+const SECRET = "segredo";
 
 const {
   getClientes,
@@ -17,23 +17,25 @@ const {
 } = require("../controller/pesquisa-controller");
 
 function verifyJWT(req, res, next) {
-  const token = req.headers['x-access-token'];
+  const token = req.headers["x-access-token"];
   jwt.verify(token, SECRET, (err, decoded) => {
-    if(err){ return res.status(401).send({error: err}); }
+    if (err) {
+      return res.status(401).send({
+        error:
+          "Você não possui permição para acesso, tente novamete mais tarde",
+      });
+    }
     req.id_cliente = decoded.id_cliente;
     next();
-  })
+  });
 }
 
-router.get("/clientes", verifyJWT, getClientes);
 router.post("/cadastro", postClientes);
-router.post("/pesquisa", postPesquisa);
+router.post("/pesquisa", verifyJWT, postPesquisa);
 
 module.exports = router;
 
-
+// router.get("/clientes", getClientes);
 // router.post("/login", loginCliente);
 // router.get("/clientes/:id_cliente", getClienteById);
 // router.delete("/clientes/:id_cliente", deleteCliente);
-
-// router.get("/pesquisa", getPesquisa);

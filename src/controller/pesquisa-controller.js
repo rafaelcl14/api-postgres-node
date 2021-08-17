@@ -1,9 +1,9 @@
 const pool = require("../database/conexao");
 
-const getPesquisa = async (req, res) => {
-  const response = await pool.query("select * from pesquisa");
-  res.status(200).json(response.rows);
-};
+// const getPesquisa = async (req, res) => {
+//   const response = await pool.query("select * from pesquisa");
+//   res.status(200).json(response.rows);
+// };
 
 // const getClienteById = async (req, res) => {
 //   const response = await pool.query(
@@ -40,6 +40,6 @@ const postPesquisa = async (req, res) => {
 // };
 
 module.exports = {
-  getPesquisa,
+  // getPesquisa,
   postPesquisa,
 };
