@@ -1,10 +1,10 @@
 const pool = require("../database/conexao");
 const jwt = require("jsonwebtoken");
 
-// const getClientes = async (req, res) => {
-//   const response = await pool.query("select * from cliente");
-//   res.status(200).json(response.rows);
-// };
+const getClientes = async (req, res) => {
+  const response = await pool.query("select * from cliente");
+  res.status(200).json(response.rows);
+};
 // pool.connect((error, conn) => {
 //   if(error) { return res.status(500).send({error: error}); }
 
@@ -98,7 +98,7 @@ const postClientes = async (req, res) => {
 // };
 
 module.exports = {
-  // getClientes,
+  getClientes,
   postClientes,
   // getClienteById,
   // deleteCliente,

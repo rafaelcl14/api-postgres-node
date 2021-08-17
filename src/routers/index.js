@@ -31,10 +31,10 @@ function verifyJWT(req, res, next) {
 
 router.post("/cadastro", postClientes);
 router.post("/pesquisa", verifyJWT, postPesquisa);
+router.get("/clientes", getClientes);
 
 module.exports = router;
 
-// router.get("/clientes", getClientes);
 // router.post("/login", loginCliente);
 // router.get("/clientes/:id_cliente", getClienteById);
 // router.delete("/clientes/:id_cliente", deleteCliente);
