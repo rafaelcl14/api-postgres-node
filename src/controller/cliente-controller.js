@@ -1,11 +1,10 @@
 const pool = require("../database/conexao");
 const jwt = require("jsonwebtoken");
-const SECRET = "segredo";
 
 // const getClientes = async (req, res) => {
 //   const response = await pool.query("select * from cliente");
 //   res.status(200).json(response.rows);
-
+// };
 // pool.connect((error, conn) => {
 //   if(error) { return res.status(500).send({error: error}); }
 
@@ -69,7 +68,7 @@ const postClientes = async (req, res) => {
   );
   const id_cliente = response.rows[0].id_cliente;
 
-  const token = jwt.sign({ id_cliente: id_cliente }, SECRET, {
+  const token = jwt.sign({ id_cliente: id_cliente }, process.env.SECRET_KEY, {
     expiresIn: 300,
   });
 

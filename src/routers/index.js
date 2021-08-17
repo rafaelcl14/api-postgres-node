@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const router = Router();
 const jwt = require("jsonwebtoken");
-const SECRET = "segredo";
 
 const {
   getClientes,
@@ -18,7 +17,7 @@ const {
 
 function verifyJWT(req, res, next) {
   const token = req.headers["x-access-token"];
-  jwt.verify(token, SECRET, (err, decoded) => {
+  jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
     if (err) {
       return res.status(401).send({
         error:
